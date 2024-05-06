@@ -1,5 +1,4 @@
 import numpy as np
-import mistofrutta as mf
 
 class volume:
     
@@ -10,4 +9,6 @@ class volume:
         self.z = z
         
     def plot(self, wait=False):
+        import mistofrutta as mf
+
         mf.plt.hyperstack(self.frames, order='zc', cmap='viridis', wait=wait)

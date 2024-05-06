@@ -1,7 +1,6 @@
 # Authors: Milena Chakraverti-Wuerthwein and Francesco Randi
 
 import numpy as np
-import matplotlib.pyplot as plt
 import warnings
 import os
 import pickle
@@ -12,9 +11,7 @@ from scipy.signal import savgol_coeffs
 from scipy.io import loadmat as sioloadmat
 from copy import deepcopy as deepcopy
 from datetime import datetime
-import mistofrutta.struct.irrarray as irrarray
 import wormdatamodel as wormdm
-import savitzkygolay as sg
 from sklearn.decomposition import FastICA
 
 class Signal:
@@ -95,6 +92,7 @@ class Signal:
             Detect and correct instantaneous photobleaching. Use only for the
             red signal. Default: False.
         '''
+        import mistofrutta.struct.irrarray as irrarray
 
         self.data = data;
         self.info = info;
@@ -630,6 +628,8 @@ class Signal:
         self.log("Median filtering on "+affected_neurons,False)
                   
     def get_derivative(self,data,n,poly):
+        import savitzkygolay as sg
+
         deriv = np.zeros_like(data)
         derker = sg.get_1D_filter(n,poly,1)
         #derker = savgol_coeffs(n,poly,deriv=1)
@@ -823,6 +823,7 @@ class Signal:
     #def get_photobl_fit(self, X, k=None):
     
     def corr_inst_photobl(self, j=None, poly_width=111, photobl_duration=3, min_distance=30):
+        import savitzkygolay as sg
 
         if j is None:
             iterate_over = np.arange(self.data.shape[1])
@@ -923,7 +924,8 @@ class Signal:
             trimmed.data can now be copied and reshaped into a multidimensional
             numpy array.        
         '''
-        
+        import mistofrutta.struct.irrarray as irrarray
+
         try:
             start = self.data.firstIndex[stride_name];
             strideLength = np.diff(start);
@@ -1064,6 +1066,8 @@ class Signal:
     
     @staticmethod
     def get_causal_sg(n,poly):
+        import savitzkygolay as sg
+
         order = np.arange(poly+1)
         out = np.zeros(n)
         for i in order:
@@ -1098,7 +1102,7 @@ class Signal:
                 y2[outl] = y2[outl-1]
                 
         return y2
-    
+
     @classmethod
     def get_matchless_nan_th_from_file(cls,folder):
         fname = folder+cls.matchless_nan_th_fname
