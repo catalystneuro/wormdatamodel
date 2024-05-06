@@ -1,7 +1,10 @@
-import numpy as np
 import os
 import json
 import pickle
+from packaging.version import Version
+
+import numpy as np
+
 import wormdatamodel as wormdm
 
 class recording:
@@ -128,10 +131,10 @@ class recording:
     
     # Optogenetics
     optogeneticsN = 0
-    optogeneticsFrameCount = np.zeros(optogeneticsN, dtype=np.int)
-    optogeneticsNPulses = np.zeros(optogeneticsN, dtype=np.int)
-    optogeneticsRepRateDivider = np.zeros(optogeneticsN, dtype=np.int)
-    optogeneticsNTrains = np.zeros(optogeneticsN, dtype=np.int)
+    optogeneticsFrameCount = np.zeros(optogeneticsN, dtype=np.int64)
+    optogeneticsNPulses = np.zeros(optogeneticsN, dtype=np.int64)
+    optogeneticsRepRateDivider = np.zeros(optogeneticsN, dtype=np.int64)
+    optogeneticsNTrains = np.zeros(optogeneticsN, dtype=np.int64)
     optogeneticsTimeBtwTrains = np.zeros(optogeneticsN)
     optogeneticsTargetX = np.zeros(optogeneticsN)
     optogeneticsTargetY = np.zeros(optogeneticsN)
@@ -674,9 +677,9 @@ class recording:
                 Line.pop(0)
                 if Line[-1]=="": Line.pop(-1)
                 self.optogeneticsN = len(Line)
-                self.optogeneticsFrameCount = np.zeros(self.optogeneticsN, dtype=np.int)
-                self.optogeneticsNPulses = np.zeros(self.optogeneticsN, dtype=np.int)
-                self.optogeneticsRepRateDivider = np.zeros(self.optogeneticsN, dtype=np.int)
+                self.optogeneticsFrameCount = np.zeros(self.optogeneticsN, dtype=np.int64)
+                self.optogeneticsNPulses = np.zeros(self.optogeneticsN, dtype=np.int64)
+                self.optogeneticsRepRateDivider = np.zeros(self.optogeneticsN, dtype=np.int64)
                 self.optogeneticsTargetX = np.zeros(self.optogeneticsN)
                 self.optogeneticsTargetY = np.zeros(self.optogeneticsN)
                 self.optogeneticsTargetZ = np.zeros(self.optogeneticsN)
@@ -686,7 +689,7 @@ class recording:
                 self.optogeneticsTime = ["None"]*self.optogeneticsN
                 
                 #These won't be populated in this case
-                self.optogeneticsNTrains = np.zeros(self.optogeneticsN, dtype=np.int)
+                self.optogeneticsNTrains = np.zeros(self.optogeneticsN, dtype=np.int64)
                 self.optogeneticsTimeBtwTrains = np.zeros(self.optogeneticsN)
                 
                 for i in np.arange(self.optogeneticsN):
@@ -707,10 +710,10 @@ class recording:
                 Line.pop(0)
                 if Line[-1]=="": Line.pop(-1)
                 self.optogeneticsN = len(Line)
-                self.optogeneticsFrameCount = np.zeros(self.optogeneticsN, dtype=np.int)
-                self.optogeneticsNPulses = np.zeros(self.optogeneticsN, dtype=np.int)
-                self.optogeneticsRepRateDivider = np.zeros(self.optogeneticsN, dtype=np.int)
-                self.optogeneticsNTrains = np.zeros(self.optogeneticsN, dtype=np.int)
+                self.optogeneticsFrameCount = np.zeros(self.optogeneticsN, dtype=np.int64)
+                self.optogeneticsNPulses = np.zeros(self.optogeneticsN, dtype=np.int64)
+                self.optogeneticsRepRateDivider = np.zeros(self.optogeneticsN, dtype=np.int64)
+                self.optogeneticsNTrains = np.zeros(self.optogeneticsN, dtype=np.int64)
                 self.optogeneticsTimeBtwTrains = np.zeros(self.optogeneticsN)
                 self.optogeneticsTargetX = np.zeros(self.optogeneticsN)
                 self.optogeneticsTargetY = np.zeros(self.optogeneticsN)
