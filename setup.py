@@ -16,5 +16,5 @@ setup(name='wormdatamodel',
       author='Francesco Randi',
       author_email='francesco.randi@gmail.com',
       packages=['wormdatamodel','wormdatamodel.data','wormdatamodel.signal'],
-      install_requires=['sklearn', 'matplotlib'],
+      install_requires=['scikit-learn', 'matplotlib'],
      )
