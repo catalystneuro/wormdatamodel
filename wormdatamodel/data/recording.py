@@ -1,7 +1,6 @@
 import os
 import json
 import pickle
-from packaging.version import Version
 
 import numpy as np
 
